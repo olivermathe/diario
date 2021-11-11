@@ -27,7 +27,15 @@
       [nzFormatter]="formatterCurrency"
       [nzParser]="parserCurrency">
       </nz-input-number>
-    <button id="adicionar" [disabled]="!amount" (click)="addOutgoing()" nz-button nzType="primary" nzBlock>Adicionar gasto</button>
+    <button
+      [nzSize]="'large'"
+      id="adicionar"
+      [disabled]="!amount"
+      (click)="addOutgoing()"
+      nz-button
+      nzType="primary"
+      nzBlock>
+      Adicionar gasto</button>
   </div>
 </div>
 <router-outlet></router-outlet>
