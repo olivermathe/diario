@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "diario-12a43": {
+      "hosting": {
+        "diario": [
+          "diario-12a43"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "diario-12a43"
+  }
+}
