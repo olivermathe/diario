@@ -1,7 +1,7 @@
 {
   "name": "diario",
   "short_name": "diario",
-  "theme_color": "#1976d2",
+  "theme_color": "#4B6FDD",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
