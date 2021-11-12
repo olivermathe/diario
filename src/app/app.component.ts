@@ -60,7 +60,7 @@ export class AppComponent {
     this.average = combineLatest([this.config, this.limit, this.outgoing]).pipe(
       map(([config, limit, outgoing]) => {
         const todaySpent = outgoing.map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-        if (this.today.getDay() === config[0].dueDay) {
+        if (this.today.getDate() === config[0].dueDay) {
           return limit - todaySpent;
         } else if (this.today.getDate() < config[0].dueDay) {
           const days = (config[0].dueDay - this.today.getDate() + 1);
