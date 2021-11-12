@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(ptBr);
 
@@ -20,8 +22,10 @@ registerLocaleData(ptBr);
     AppComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     NzInputNumberModule,
     FormsModule,
+    NzSelectModule,
     NzButtonModule,
     NzGridModule,
     BrowserModule,

@@ -10,6 +10,12 @@ interface IConfig {
 
 interface IOutgoing {
   amount: number;
+  date: Date;
+  categorie: string;
+}
+
+interface ICategorie {
+  name: string;
 }
 
 @Component({
@@ -20,6 +26,7 @@ interface IOutgoing {
 export class AppComponent {
   title = 'diario';
   amount: string = '';
+  categorie: string = 'Outros';
   today = new Date();
   formatterCurrency = (value: number): string => `R$ ${value}`;
   parserCurrency = (value: string): string => value.replace('R$ ', '').replace(',', '.');
@@ -28,12 +35,14 @@ export class AppComponent {
   average: Observable<number> = of(0);
   config: Observable<IConfig[]> = of([]);
   outgoing: Observable<IOutgoing[]> = of([]);
+  categories: Observable<ICategorie[]> = of([]);
 
   constructor(
     private firestore: AngularFirestore,
   ) {
     this.today.setHours(0);
     this.config = this.firestore.collection<IConfig>('config').valueChanges();
+    this.categories = this.firestore.collection<ICategorie>('categories').valueChanges();
     this.getOutgoing();
     this.getLimit();
     this.getAverage();
@@ -74,9 +83,10 @@ export class AppComponent {
   }
 
   addOutgoing() {
-    this.firestore.collection('outgoing').add({
-      amount: this.amount,
-      date: new Date()
+    this.firestore.collection<IOutgoing>('outgoing').add({
+      amount: parseFloat(this.amount),
+      date: new Date(),
+      categorie: this.categorie
     });
     this.amount = '';
   }

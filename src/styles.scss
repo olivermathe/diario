@@ -1,7 +1,11 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 
-.ant-input-number-input {
+.ant-input-number-input, .ant-select {
     height: 50px !important;
+}
+
+.ant-select-arrow {
+    top: 43% !important;
 }
 
 .ant-input-number-focused {

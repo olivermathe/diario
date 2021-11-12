@@ -26,7 +26,15 @@
       [nzStep]="0.1"
       [nzFormatter]="formatterCurrency"
       [nzParser]="parserCurrency">
-      </nz-input-number>
+    </nz-input-number>
+    <nz-select [(ngModel)]="categorie" [nzSize]="'large'">
+      <nz-option
+      
+        *ngFor="let categorie of categories | async"
+        [nzValue]="categorie.name"
+        [nzLabel]="categorie.name">
+      </nz-option>
+    </nz-select>
     <button
       [nzSize]="'large'"
       id="adicionar"
@@ -35,7 +43,8 @@
       nz-button
       nzType="primary"
       nzBlock>
-      Adicionar gasto</button>
+      Adicionar gasto
+    </button>
   </div>
 </div>
 <router-outlet></router-outlet>
