@@ -42,6 +42,7 @@ export class AppComponent {
     private firestore: AngularFirestore,
     private appUpdateService: AppUpdateService
   ) {
+    appUpdateService.start();
     this.today.setHours(0);
     this.config = this.firestore.collection<IConfig>('config').valueChanges();
     this.categories = this.firestore.collection<ICategorie>('categories').valueChanges();
