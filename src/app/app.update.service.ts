@@ -19,13 +19,15 @@ export class AppUpdateService {
     }
 
     showAppUpdateAlert() {
-        const header = 'App Update available';
-        const message = 'Choose Ok to update';
-        const action = this.doAppUpdate;
+        const header = 'Atualização disponível';
+        const message = 'Deseja atualizar agora?';
         this.confirmModal = this.modal.confirm({
             nzTitle: header,
             nzContent: message,
-            nzOnOk: action
+            nzOnOk: () => new Promise(resolve => {
+                this.doAppUpdate();
+                return resolve();
+            })
         });
     }
 
