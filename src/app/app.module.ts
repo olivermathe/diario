@@ -18,12 +18,14 @@ import { AppUpdateService } from './app.update.service';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NZ_I18N, pt_BR } from 'ng-zorro-antd/i18n';
+import { SplashScreenComponent } from './splash-screen.component';
 
 registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserAnimationsModule,

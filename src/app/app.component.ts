@@ -25,6 +25,7 @@ interface ICategorie {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  showSplashScreen = true;
   title = 'diario';
   amount: string = '';
   categorie: string = 'Outros';
