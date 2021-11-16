@@ -1,0 +1,48 @@
+<div nz-row id="tela">
+    <div nzFlex="auto" nz-col >
+      <div id="conteudo">
+        <div nz-row>
+            <span id="titulo">Limite diário</span>
+        </div>
+        <div nz-row>
+            <span id="limite">{{average | async  | currency}}</span>
+        </div>
+        <div nz-row>
+            <ul id="lista-gastos">
+                <li class="text" *ngFor="let item of outgoing | async">
+                    {{item.amount * -1 | currency}}
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div nzFlex="auto" nz-col>
+        <nz-input-number
+            id="valor"
+            [nzSize]="'large'"
+            [(ngModel)]="amount"
+            [nzMin]="1"
+            [nzMax]="500"
+            [nzStep]="0.1"
+            [nzFormatter]="formatterCurrency"
+            [nzParser]="parserCurrency">
+        </nz-input-number>
+        <nz-select [(ngModel)]="categorie" [nzSize]="'large'">
+            <nz-option
+                *ngFor="let categorie of categories | async"
+                [nzValue]="categorie.name"
+                [nzLabel]="categorie.name">
+            </nz-option>
+        </nz-select>
+        <button
+            [nzSize]="'large'"
+            id="adicionar"
+            [disabled]="!amount"
+            (click)="addOutgoing()"
+            nz-button
+            nzType="primary"
+            nzBlock>
+            Adicionar gasto
+        </button>
+    </div>
+</div>
