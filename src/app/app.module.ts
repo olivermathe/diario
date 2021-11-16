@@ -15,6 +15,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppUpdateService } from './app.update.service';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 registerLocaleData(ptBr);
 
@@ -30,7 +32,9 @@ registerLocaleData(ptBr);
     NzButtonModule,
     NzGridModule,
     BrowserModule,
+    NzModalModule,
     AppRoutingModule,
+    NzNotificationModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
