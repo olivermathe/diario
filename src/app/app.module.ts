@@ -14,6 +14,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppUpdateService } from './app.update.service';
 
 registerLocaleData(ptBr);
 
@@ -43,6 +44,7 @@ registerLocaleData(ptBr);
     CurrencyPipe,
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+    AppUpdateService
   ],
   bootstrap: [AppComponent]
 })

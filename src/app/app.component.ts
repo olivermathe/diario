@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AppUpdateService } from './app.update.service';
 
 interface IConfig {
   limit: number;
@@ -39,6 +40,7 @@ export class AppComponent {
 
   constructor(
     private firestore: AngularFirestore,
+    private appUpdateService: AppUpdateService
   ) {
     this.today.setHours(0);
     this.config = this.firestore.collection<IConfig>('config').valueChanges();
