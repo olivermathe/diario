@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { timer } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AppUpdateService {
+
+    minute = 60000;
 
     confirmModal?: NzModalRef;
 
@@ -12,10 +15,14 @@ export class AppUpdateService {
         private readonly updates: SwUpdate,
         private readonly modal: NzModalService,
         private readonly notification: NzNotificationService,
-    ) {
-        this.updates.available.subscribe(event => {
-            this.showAppUpdateAlert();
-        });
+    ) {}
+
+    start() {
+        timer(this.minute).subscribe(() => this.checkForUpdate())
+    }
+
+    checkForUpdate() {
+        this.updates.available.subscribe(() => this.showAppUpdateAlert());
     }
 
     showAppUpdateAlert() {

@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppUpdateService } from './app.update.service';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NZ_I18N, pt_BR } from 'ng-zorro-antd/i18n';
 
 registerLocaleData(ptBr);
 
@@ -46,6 +47,7 @@ registerLocaleData(ptBr);
   ],
   providers: [
     CurrencyPipe,
+    { provide: NZ_I18N, useValue: pt_BR },
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
     AppUpdateService
