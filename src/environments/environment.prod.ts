@@ -1,4 +1,7 @@
+import pck from '../../package.json';
+
 export const environment = {
+  version: pck.version,
   production: true,
   firebase: {
     apiKey: "AIzaSyBfHYZ9qNctSKx-jI6OIbPZEFYysbJ_gcY",
