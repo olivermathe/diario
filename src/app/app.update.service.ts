@@ -18,6 +18,7 @@ export class AppUpdateService {
     ) {}
 
     start() {
+        this.checkForUpdate();
         timer(this.minute).subscribe(() => this.checkForUpdate())
     }
 
