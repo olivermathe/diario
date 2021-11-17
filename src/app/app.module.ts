@@ -11,6 +11,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N, pt_BR } from 'ng-zorro-antd/i18n';
 import { SplashScreenComponent } from './splash-screen.component';
+import { AppUpdateService } from './pages/home/app.update.service';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 registerLocaleData(ptBr);
 
@@ -22,6 +25,8 @@ registerLocaleData(ptBr);
   imports: [
     BrowserAnimationsModule,
     AppRoutingModule,
+    NzModalModule,
+    NzNotificationModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -30,6 +35,7 @@ registerLocaleData(ptBr);
     })
   ],
   providers: [
+    AppUpdateService,
     { provide: NZ_I18N, useValue: pt_BR },
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },

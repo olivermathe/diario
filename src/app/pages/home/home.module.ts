@@ -4,10 +4,12 @@ import { FormsModule } from "@angular/forms";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzGridModule } from "ng-zorro-antd/grid";
 import { NzInputNumberModule } from "ng-zorro-antd/input-number";
-import { NzModalModule } from "ng-zorro-antd/modal";
-import { NzNotificationModule } from "ng-zorro-antd/notification";
 import { NzSelectModule } from "ng-zorro-antd/select";
-import { AppUpdateService } from "./app.update.service";
+import { CategoryRepository } from "src/app/repositories/categories.repository";
+import { ConfigRepository } from "src/app/repositories/config.repository";
+import { OutgoingRepository } from "src/app/repositories/outgoing.repository";
+import { LimitService } from "src/app/services/limit.service";
+import { SpentService } from "src/app/services/spent.service";
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 
@@ -23,12 +25,14 @@ import { HomeComponent } from "./home.component";
         NzSelectModule,
         NzButtonModule,
         NzGridModule,
-        NzModalModule,
-        NzNotificationModule,
     ],
     providers: [
+        LimitService,
+        SpentService,
+        CategoryRepository,
+        ConfigRepository,
+        OutgoingRepository,
         CurrencyPipe,
-        AppUpdateService
     ],
 })
 export class HomeModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
+import { AppUpdateService } from './pages/home/app.update.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ export class AppComponent {
 
   version = environment.version;
   
-  constructor() {}
+  constructor(private appUpdateService: AppUpdateService) {
+    this.appUpdateService.start();
+  }
 
 }

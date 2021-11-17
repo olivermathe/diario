@@ -5,7 +5,7 @@
             <span id="titulo">Limite diário</span>
         </div>
         <div nz-row>
-            <span id="limite">{{average | async  | currency}}</span>
+            <span id="limite">{{limit | async  | currency}}</span>
         </div>
         <div nz-row>
             <ul id="lista-gastos">
@@ -27,7 +27,7 @@
             [nzFormatter]="formatterCurrency"
             [nzParser]="parserCurrency">
         </nz-input-number>
-        <nz-select [(ngModel)]="categorie" [nzSize]="'large'">
+        <nz-select [(ngModel)]="category" [nzSize]="'large'">
             <nz-option
                 *ngFor="let categorie of categories | async"
                 [nzValue]="categorie.name"
