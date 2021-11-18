@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CategoryRepository, ICategory } from 'src/app/repositories/categories.repository';
-import { IOutgoing, OutgoingRepository } from 'src/app/repositories/outgoing.repository';
+import { IOutgoing } from 'src/app/repositories/outgoing.repository';
 import { LimitService } from 'src/app/services/limit.service';
 import { SpentService } from 'src/app/services/spent.service';
 
@@ -23,7 +23,6 @@ export class HomeComponent {
 
   constructor(
     private categoryRepository: CategoryRepository,
-    private outgoingRepository: OutgoingRepository,
     private spentService: SpentService,
     private limitService: LimitService
   ) {

@@ -5,7 +5,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { timer } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class AppUpdateService {
+export class UpdateService {
 
     minute = 60000;
 
