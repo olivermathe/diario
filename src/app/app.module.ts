@@ -35,7 +35,7 @@ registerLocaleData(ptBr);
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireMessagingModule,
-    ServiceWorkerModule.register('../firebase-messaging-sw.js'),
+    ServiceWorkerModule.register('firebase-messaging-sw.js'),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
