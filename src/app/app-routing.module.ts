@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/diario', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
-    path: 'diario',
+    path: 'home',
     data: { animation: 'HomePage' },
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'mensal',
+    path: 'extrato',
     data: { animation: 'MonthPage' },
     loadChildren: () => import('./pages/month/month.module').then(m => m.MonthModule)
   }

@@ -16,7 +16,18 @@ import { UpdateService } from './services/update.service';
 export class AppComponent {
 
   version = environment.version;
-  links = ['diario', 'mensal'];
+  links = [
+    {
+      label: 'inicio',
+      icon: 'home',
+      path: 'home'
+    },
+    {
+      label: 'extrato',
+      icon: 'format_list_bulleted',
+      path: 'extrato'
+    }
+  ];
   activeLink = '';
   
   constructor(private appUpdateService: UpdateService, private router: ActivatedRoute) {

@@ -58,7 +58,9 @@ export class SpentService {
             map(config => config.dueDay),
             map(dueDay => {
                 const firstDay = new Date();
-                firstDay.setMonth(firstDay.getMonth() -1)
+                if (dueDay > firstDay.getDate()) {
+                    firstDay.setMonth(firstDay.getMonth() -1)
+                }
                 firstDay.setDate(dueDay +1);
                 firstDay.setHours(0);
                 return firstDay;

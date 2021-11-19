@@ -21,7 +21,7 @@ export const slideInAnimation =
       ]),
       query(':enter', [
         style({
-          boxShadow: '-6px 6px 4px rgba(0, 0, 0, 0.25)',
+          boxShadow: '-6px 6px 10px rgba(0, 0, 0, 0.25)',
           zIndex: 200,
           width: '0%',
           left: '100%'
@@ -47,7 +47,7 @@ export const slideInAnimation =
         ]),
         query(':leave', [
           style({
-            boxShadow: '-6px 6px 4px rgba(0, 0, 0, 0.25)',
+            boxShadow: '-6px 6px 10px rgba(0, 0, 0, 0.25)',
             zIndex: 200,
             width: '100%',
             left: '0%'
