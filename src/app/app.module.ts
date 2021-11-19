@@ -15,6 +15,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { MessagingService } from './services/messaging.service';
 
 registerLocaleData(ptBr);
 
@@ -32,12 +34,15 @@ registerLocaleData(ptBr);
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireMessagingModule,
+    ServiceWorkerModule.register('../firebase-messaging-sw.js'),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
   providers: [
+    MessagingService,
     UpdateService,
     { provide: NZ_I18N, useValue: pt_BR },
     { provide: LOCALE_ID, useValue: 'pt' },

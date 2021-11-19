@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
 import { slideInAnimation } from './animations';
+import { MessagingService } from './services/messaging.service';
 
 import { UpdateService } from './services/update.service';
 
@@ -14,6 +15,8 @@ import { UpdateService } from './services/update.service';
   ]
 })
 export class AppComponent {
+
+  message = {};
 
   version = environment.version;
   links = [
@@ -28,10 +31,17 @@ export class AppComponent {
       path: 'extrato'
     }
   ];
-  activeLink = '';
+  activeLink = 'home';
   
-  constructor(private appUpdateService: UpdateService, private router: ActivatedRoute) {
+  constructor(
+    private appUpdateService: UpdateService,
+    private router: ActivatedRoute,
+    private messagingService: MessagingService
+  ) {
     this.appUpdateService.start();
+    this.messagingService.requestPermission()
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
   }
 
   prepareRoute(outlet: RouterOutlet) {
