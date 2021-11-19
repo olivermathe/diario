@@ -4,7 +4,7 @@ import { Repository } from "./repository";
 
 export interface IOutgoing {
     amount: number;
-    date: Date;
+    date: any;
     categorie: string;
 }
 

@@ -17,6 +17,12 @@ export class LimitService {
         this.today.setHours(0);
     }
 
+    getTotalMonthLimit() {
+        return this.configRepository.get().pipe(
+            map(config => config.limit)
+        );
+    }
+
     getMonthLimit() {
         return combineLatest([this.configRepository.get(), this.spentService.getPastDaysSpent()]).pipe(
             map(([config, outgoing]) => [config.limit, this.sumMonthSpent(outgoing)]),

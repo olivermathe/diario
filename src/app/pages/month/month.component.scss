@@ -1,0 +1,38 @@
+@import '../../../styles.scss';
+
+
+#tela {
+    padding-bottom: 60px;
+}
+
+#titulo, #limite {
+    font-weight: bold;
+}
+
+#titulo {
+    margin-top: 44px;
+    font-size: 18px;
+    color: $primary;
+}
+
+#limite {
+    font-size: 36px;
+    color: $sisisi;
+}
+
+#gastos {
+    margin-top: -10px;
+    font-size: 25px;
+    color: red;
+}
+
+#valores {
+    flex-flow: column;
+    display: flex;
+    width: fit-content;
+    align-items: flex-end;
+}
+
+.timeline-amount {
+    font-weight: bold;
+}

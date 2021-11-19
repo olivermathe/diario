@@ -1,3 +1,21 @@
 #version {
     text-align: center;
 }
+
+.mat-tab-link {
+    height: 60px;
+    font-size: 20px;
+    flex: 1;
+}
+
+.mat-tab-label-active {
+    opacity: 1;
+}
+
+.mat-tab-nav-bar {
+    z-index: 9999;
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0%;
+}

@@ -1,11 +1,11 @@
+@import '../../../styles.scss';
+
 nz-input-number, nz-select {
     width: 100%;
 }
 
 #tela {
     padding-top: 120px;
-    padding-left: 43px;
-    padding-right: 43px;
 }
 
 #conteudo, #titulo, #limite, #lista-gastos {
@@ -23,20 +23,20 @@ nz-input-number, nz-select {
 #titulo {
     margin-top: 44px;
     font-size: 18px;
-    color: #4B6FDD;
+    color: $primary;
 }
 
 #limite {
     margin-top: 34px;
     font-size: 24px;
-    color: #000000;
+    color: $sisisi;
 }
 
 #lista-gastos {
     margin-top: 13px;
     list-style-type: none; /* Remove bullets */
     padding: 0; /* Remove padding */
-    color: #D83131;
+    color: $danger;
 
     li {
         line-height: 1.4;
@@ -73,9 +73,9 @@ nz-input-number, nz-select {
     width: 220px;
     height: 220px;
     border-radius: 50%;
-    background: white;
+    background: $nonono;
     box-sizing: border-box;
-    border: 5px solid #4B6FDD;
+    border: 5px solid $primary;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 

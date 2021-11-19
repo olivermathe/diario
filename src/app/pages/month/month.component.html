@@ -1,0 +1,24 @@
+<div id="tela">
+    <div nz-row >
+        <div nzFlex="auto" nz-col >
+            <div nz-row>
+                <span id="titulo">Limite mensal</span>
+            </div>
+            <div nz-col>
+                <div id="valores">
+                    <span id="limite">{{limit | async | currency}}</span>
+                    <span id="gastos">{{totalSpent * -1| currency}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div nz-row>
+        <nz-timeline [nzPending]="' '" [nzReverse]="true">
+            <nz-timeline-item *ngFor="let item of timeline" [nzLabel]="item.dayMonth">
+                <span class="timeline-amount">{{item.amount | currency}}</span>
+                <br>
+                <span>{{item.category}}</span>
+            </nz-timeline-item>
+        </nz-timeline>
+    </div>
+</div>

@@ -1,11 +1,47 @@
+
+
 @use "~inter-ui/default" with (
-  $inter-font-display: swap,
-  $inter-font-path: '~inter-ui/Inter (web)'
+    $inter-font-display: swap,
+    $inter-font-path: '~inter-ui/Inter (web)'
 );
 @use "~inter-ui/variable" with (
-  $inter-font-display: swap,
-  $inter-font-path: '~inter-ui/Inter (web)'
+    $inter-font-display: swap,
+    $inter-font-path: '~inter-ui/Inter (web)'
 );
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+@import './palette.color.scss';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$diario-primary: mat.define-palette($app-primary);
+$diario-accent: mat.define-palette($app-accent);
+$diario-warn: mat.define-palette($app-warning);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$diario-theme: mat.define-light-theme((
+  color: (
+    primary: $diario-primary,
+    accent: $diario-accent,
+    warn: $diario-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($diario-theme);
+
 @include default.all;
 @include variable.all;
 
@@ -20,6 +56,19 @@ html { font-family: "Inter", "system-ui" !important; }
 $neutral88: #E0E0E0;
 $primary: #4B6FDD;
 $primary-darker: #2142AB;
+$sisisi: #000000;
+$nonono: white;
+$danger: #D83131;
+
+#tela {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-width: 100vh;
+    max-height: 88.5;
+    padding-left: 44px;
+    padding-right: 44px;
+    background-color: $nonono;
+}
 
 p, span, div, h1, h2, input {
     font-family: "Inter var", "system-ui" !important;  
@@ -51,6 +100,7 @@ p, span, div, h1, h2, input {
 }
 
 .ant-input-number, .ant-select-selector {
+    width: 100% !important;
     height: 56px !important;
     background-color: #F6F6F6 !important;
     border-radius: 8px !important;
@@ -105,3 +155,30 @@ p, span, div, h1, h2, input {
     z-index: 9999;
 }
 
+.ant-timeline-item-content {
+    left: calc(50% - 4px) !important;
+    width: calc(100% - 14px) !important;
+}
+
+.ant-timeline-item-tail, .ant-timeline-item-head {
+    left: 50% !important;
+}
+
+.ant-timeline-item-label {
+    font-weight: bold;
+    width: calc(50% - 12px) !important;
+}
+
+.ant-timeline-item-pending {
+    .ant-timeline-item-head {
+        display: none !important;
+    }    
+}
+
+.ant-timeline-item-head-blue {
+    color: $primary !important;
+    border-color: $primary !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

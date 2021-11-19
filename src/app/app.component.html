@@ -1,4 +1,17 @@
 <!-- <app-splash-screen></app-splash-screen> -->
 <p id="version">{{ version }}</p>
 
-<router-outlet></router-outlet>
+<div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
+
+<nav mat-tab-nav-bar backgroundColor="primary">
+    <a
+        mat-tab-link 
+        *ngFor="let link of links"
+        [routerLink]="link"
+        (click)="activeLink = link"
+        [active]="activeLink == link">
+        {{link}}
+    </a>
+</nav>
