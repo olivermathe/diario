@@ -16,6 +16,6 @@ if (isSupported) {
     const messaging = firebase.messaging();
     messaging.onBackgroundMessage(({ notification: { title, body, image } }) => {
         console.log(1231231);
-        self.registration.showNotification(title, { body, icon: image || '/assets/icons/icon-72x72.png' });
+        self.registration.showNotification(title, { body, icon: image || '/assets/icons/72x72.png' });
     });
 }
