@@ -43,10 +43,18 @@ export class AppComponent {
     this.message = this.messagingService.message$;
     this.messagingService.message$.subscribe(m => console.log(m));
     this.appUpdateService.start();
+    console.log('asdasda', navigator && navigator.serviceWorker);
+    if (navigator && navigator.serviceWorker) {
+      navigator.serviceWorker.addEventListener('message', this.onReceiveMsg.bind(this));
+    }
   }
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];
+  }
+
+  onReceiveMsg(fcmMessage: any) {
+    console.log('foreground', fcmMessage);
   }
 
 }
