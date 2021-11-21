@@ -7,6 +7,7 @@ import pck from '../../package.json';
 export const environment = {
   version: pck.version,
   production: false,
+  vapidKey: "BKk8oaVAF5qiy6QJJRXwclmd3X9J-jz9U3aaaez-yQ3fOb6NrlP-DftkD7uNqggAgir1_YyG8UiT7Mq4khhcIEk",
   firebase: {
     apiKey: "AIzaSyBfHYZ9qNctSKx-jI6OIbPZEFYysbJ_gcY",
     authDomain: "diario-12a43.firebaseapp.com",
@@ -16,7 +17,6 @@ export const environment = {
     messagingSenderId: "1049768546446",
     appId: "1:1049768546446:web:0c74e1ce14716094e9f9df",
   },
-  vapidKey: "BMn_Ex_RdoHdAebpcedYW6W3TFcqnwwg_HRuCwZqYcCf2_biX0AGilOuY_4KNFRKb66Ja7H0yD1PAgzYaQSdF8w"
 };
 
 /*

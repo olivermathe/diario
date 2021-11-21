@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { MessagePayload } from '@firebase/messaging';
-import { BehaviorSubject } from 'rxjs'
+import { EMPTY, Observable } from 'rxjs'
+import { trace } from '@angular/fire/compat/performance';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class MessagingService {
 
-    currentMessage = new BehaviorSubject<any>({});
-    
-    constructor(private angularFireMessaging: AngularFireMessaging) {}
-    
-    requestPermission() {
-        this.angularFireMessaging.requestPermission.subscribe(
-            () => { console.log('Permission granted!'); },
-            (error) => { console.error(error); },  
+    token$: Observable<any> = EMPTY;
+    message$: Observable<any> = EMPTY;
+    showRequest = false;
+
+    constructor(private readonly messaging: AngularFireMessaging) {
+        this.message$ = messaging.messages;
+        this.token$ = messaging.tokenChanges.pipe(
+            trace('token'),
+            tap(token => this.showRequest = !token)
         );
     }
 
-    receiveMessage() {
-        this.angularFireMessaging.messages.subscribe((message) => {
-            debugger
-            console.log(message);
-            this.currentMessage.next(message);
-        });
+    request() {
+        this.messaging.requestPermission.subscribe(console.log, console.error);
     }
+
 }

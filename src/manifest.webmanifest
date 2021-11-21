@@ -1,9 +1,9 @@
 {
+  "gcm_sender_id": "1049768546446",
   "name": "diario",
   "short_name": "diario",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "gcm_sender_id": "1049768546446",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

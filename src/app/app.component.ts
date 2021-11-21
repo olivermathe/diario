@@ -2,12 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { slideInAnimation } from './animations';
-import { Messaging, getToken, onMessage } from '@angular/fire/messaging';
+import { MessagingService } from './services/messaging.service';
 
 import { UpdateService } from './services/update.service';
-import { EMPTY, from, Observable } from 'rxjs';
-import { share, tap } from 'rxjs/operators';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +15,6 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
   ]
 })
 export class AppComponent {
-
-  message = {};
 
   version = environment.version;
   links = [
@@ -36,42 +31,22 @@ export class AppComponent {
   ];
   activeLink = 'home';
 
-  token$: Observable<any> = EMPTY;
-  message$: Observable<any> = EMPTY;
-  showRequest = false;
-  
+  message: any;
+  token: any;
+
   constructor(
     private appUpdateService: UpdateService,
-    private messaging: Messaging,
-    private angularFireMessaging: AngularFireMessaging 
+    private messagingService: MessagingService
   ) {
-    this.token$ = from(
-      navigator.serviceWorker.register('firebase-messaging-sw.js', { type: 'module', scope: '__' }).
-        then(serviceWorkerRegistration =>
-          getToken(this.messaging, {
-            serviceWorkerRegistration,
-            vapidKey: environment.vapidKey,
-          })
-        )).pipe(
-          tap(token => console.log('FCM', {token})),
-          share()
-        );
-    this.message$ = new Observable(sub => onMessage(messaging, it => sub.next(it))).pipe(
-      tap(it => console.log('FCM', it)),
-    );
+    this.messagingService.request();
+    this.token = this.messagingService.token$;
+    this.message = this.messagingService.message$;
+    this.messagingService.message$.subscribe(m => console.log(m));
     this.appUpdateService.start();
-    this.requestPermission();
   }
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];
   }
 
-  requestPermission() {
-    this.angularFireMessaging.requestPermission.subscribe(
-        () => { console.log('Permission granted!'); },
-        (error: any) => { console.error(error); },  
-    );
-}
-  
 }
