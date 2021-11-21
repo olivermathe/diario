@@ -20,12 +20,6 @@ import { MessagingService } from './services/messaging.service';
 
 registerLocaleData(ptBr);
 
-
-const factory = () => {
-  navigator.serviceWorker?.register('firebase-messaging-sw.js', { scope: '__' }).then(a => console.log(a));
-  return typeof navigator !== 'undefined' && navigator.serviceWorker?.register('firebase-messaging-sw.js', { scope: '__' }) || undefined
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +33,7 @@ const factory = () => {
     MatTabsModule,
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireMessagingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -50,7 +44,7 @@ const factory = () => {
     MessagingService,
     UpdateService,
     { provide: VAPID_KEY, useValue: environment.vapidKey },
-    { provide: SERVICE_WORKER, useFactory: factory },
+    { provide: SERVICE_WORKER, useFactory: () => typeof navigator !== 'undefined' && navigator.serviceWorker?.register('firebase-messaging-sw.js', { scope: '__' }) || undefined },
     { provide: NZ_I18N, useValue: pt_BR },
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },

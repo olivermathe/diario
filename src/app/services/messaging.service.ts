@@ -17,10 +17,18 @@ export class MessagingService {
             trace('token'),
             tap(token => this.showRequest = !token)
         );
+        this.messaging.onMessage((message) => console.log('onMessage', message));
+        if (navigator && navigator.serviceWorker) {
+            navigator.serviceWorker.addEventListener('message', this.onReceiveMsg.bind(this));
+        }
     }
 
     request() {
         this.messaging.requestPermission.subscribe(console.log, console.error);
+    }
+
+    onReceiveMsg(message: any) {
+        console.log('foreground', message);
     }
 
 }
