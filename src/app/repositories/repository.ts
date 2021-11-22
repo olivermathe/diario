@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 
 export interface IWhere {
     fieldPath: string,
-    opStr: "<" | "<=" | "==" | ">" | ">=",
+    opStr: "<" | "<=" | "==" | ">" | ">=" | "array-contains",
     value: any
 }
 

@@ -5,7 +5,7 @@
     <router-outlet #outlet="outlet"></router-outlet>
 </div>
 
-<nav mat-tab-nav-bar backgroundColor="primary">
+<nav mat-tab-nav-bar backgroundColor="primary" *ngIf="showTabs">
     <a
         mat-tab-link 
         *ngFor="let link of links"

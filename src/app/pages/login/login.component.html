@@ -1,0 +1,17 @@
+<div nz-row id="tela">
+    <div nzFlex="auto" nz-col>
+        <img src="../../../assets/icons/144x144.png" alt="Logo Diario" sizes="144" id="logo">
+        <h1 id="bem-vindo">Bem vindo ao Diario</h1>
+    </div>
+    <div nzFlex="auto" nz-col>
+        <button
+            [nzSize]="'large'"
+            id="login-with-google"
+            (click)="loginWithGoogle()"
+            nz-button
+            nzType="primary"
+            nzBlock>
+            Entrar com Google
+        </button>
+    </div>
+</div>

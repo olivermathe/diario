@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { slideInAnimation } from './animations';
+import { AuthService } from './services/auth.service';
 import { MessagingService } from './services/messaging.service';
 
 import { UpdateService } from './services/update.service';
@@ -31,12 +33,23 @@ export class AppComponent {
   ];
   activeLink = 'home';
 
+  showTabs = false;
+
   constructor(
     private appUpdateService: UpdateService,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    private authService: AuthService,
+    private router: Router
   ) {
-    this.messagingService.request();
+    this.authService.user.subscribe(user => {
+      if (user) {
+        this.showTabs = user !== null;
+        this.router.navigate(['home']);
+        this.activeLink = 'home';
+      }
+    });
     this.appUpdateService.start();
+    this.messagingService.request();
   }
 
   prepareRoute(outlet: RouterOutlet) {
