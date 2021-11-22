@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { StorageService } from "../services/storage.service";
 import { Repository } from "./repository";
 
 interface IConfig {

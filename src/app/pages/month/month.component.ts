@@ -1,7 +1,6 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
-import { combineLatest, Observable, of, timer } from 'rxjs';
-import { combineAll, map } from 'rxjs/operators';
+import { combineLatest, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LimitService } from 'src/app/services/limit.service';
 import { SpentService } from 'src/app/services/spent.service';
 
@@ -34,9 +33,8 @@ export class MonthComponent {
       map(([outgoing, limit]) => {
         let totalSpent = 0;
         const timelineList = outgoing.map(o => {
-          const date = new Date(o.date.nanoseconds);
-          const day = date.getDate().toString();
-          const month = (date.getMonth() +1).toString();
+          const day = o.date.toDate().getDate().toString();
+          const month = (o.date.toDate().getMonth() +1).toString();
 
           totalSpent = totalSpent + o.amount;
 
