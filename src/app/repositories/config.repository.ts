@@ -15,8 +15,8 @@ export class ConfigRepository extends Repository<IConfig> {
 
     path: string = 'config';
 
-    constructor(firestore: AngularFirestore, storage: StorageService) {
-        super(firestore, storage);
+    constructor(firestore: AngularFirestore) {
+        super(firestore);
     }
 
     get(): Observable<IConfig> {

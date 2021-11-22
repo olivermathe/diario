@@ -34,8 +34,9 @@ export class MonthComponent {
       map(([outgoing, limit]) => {
         let totalSpent = 0;
         const timelineList = outgoing.map(o => {
-          const day = o.date.toDate().getDate().toString();
-          const month = (o.date.toDate().getMonth() +1).toString();
+          const date = new Date(o.date.nanoseconds);
+          const day = date.getDate().toString();
+          const month = (date.getMonth() +1).toString();
 
           totalSpent = totalSpent + o.amount;
 

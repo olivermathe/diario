@@ -12,8 +12,8 @@ export class CategoryRepository extends Repository<ICategory> {
 
     path: string = 'categories';
 
-    constructor(firestore: AngularFirestore, storage: StorageService) {
-        super(firestore, storage);
+    constructor(firestore: AngularFirestore) {
+        super(firestore);
     }
 
 }

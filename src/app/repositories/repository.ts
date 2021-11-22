@@ -1,7 +1,8 @@
 import { AngularFirestore, CollectionReference, DocumentData, Query, QueryFn } from "@angular/fire/compat/firestore";
-import { fromEvent, merge, Observable } from "rxjs";
-import { filter, map, mergeMap } from "rxjs/operators";
-import { StorageService } from "../services/storage.service";
+import { Timestamp } from "@angular/fire/firestore";
+import { fromEvent, merge, Observable, of } from "rxjs";
+import { filter, map, mergeMap, tap } from "rxjs/operators";
+import { IOutgoing } from "./outgoing.repository";
 
 export interface IWhere {
     fieldPath: string,
@@ -25,10 +26,7 @@ export class Repository<T> {
     path: string = '';
     connectionStatus: boolean = true;
 
-    constructor(
-        private readonly firestore: AngularFirestore,
-        private readonly storage: StorageService
-    ) {
+    constructor(private readonly firestore: AngularFirestore) {
         this.checkConnectionStatus();
     }
 
@@ -41,20 +39,19 @@ export class Repository<T> {
         }
         if (!this.connectionStatus) {
             debugger;
-            valueChanges = this.storage.get(index) as Observable<T[]>;
+            const stringify = localStorage.getItem(index) || '[]';
+            let json: any[] = JSON.parse(stringify);
+            if (index.includes(':outgoing:')) {
+                json = json.map(o => {
+                    o.date = new Timestamp(o.date.seconds, o.date.nanoseconds);
+                    return o;
+                })
+            }
+            valueChanges = of(json);
         } else {
             valueChanges = this.firestore.collection<T>(this.path, queryFn).valueChanges().pipe(
-                mergeMap(list => {
-                    return this.storage.has(index).pipe(
-                        map(has => {
-                            if (!has) {
-                                debugger;
-                                this.storage.set(index, list);
-                            }
-                            return list;
-                        })
-                    )
-                })
+                tap(() => localStorage.removeItem(index)),
+                tap(list => localStorage.setItem(index, JSON.stringify(list)))
             );
         }
         return valueChanges.pipe(

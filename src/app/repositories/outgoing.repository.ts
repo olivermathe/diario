@@ -14,8 +14,8 @@ export class OutgoingRepository extends Repository<IOutgoing> {
 
     path: string = 'outgoing';
 
-    constructor(firestore: AngularFirestore, storage: StorageService) {
-        super(firestore, storage);
+    constructor(firestore: AngularFirestore) {
+        super(firestore);
     }
 
 }
