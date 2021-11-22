@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { AngularFireMessagingModule, SERVICE_WORKER, VAPID_KEY } from '@angular/fire/compat/messaging';
 import { MessagingService } from './services/messaging.service';
+import { StorageService } from './services/storage.service';
 
 registerLocaleData(ptBr);
 
@@ -41,6 +42,7 @@ registerLocaleData(ptBr);
     })
   ],
   providers: [
+    StorageService,
     MessagingService,
     UpdateService,
     { provide: VAPID_KEY, useValue: environment.vapidKey },

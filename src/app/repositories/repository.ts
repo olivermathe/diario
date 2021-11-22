@@ -1,4 +1,7 @@
 import { AngularFirestore, CollectionReference, DocumentData, Query, QueryFn } from "@angular/fire/compat/firestore";
+import { fromEvent, merge, Observable } from "rxjs";
+import { filter, map, mergeMap } from "rxjs/operators";
+import { StorageService } from "../services/storage.service";
 
 export interface IWhere {
     fieldPath: string,
@@ -20,15 +23,43 @@ export interface IListOptions {
 export class Repository<T> {
 
     path: string = '';
+    connectionStatus: boolean = true;
 
-    constructor(private readonly firestore: AngularFirestore) {}
+    constructor(
+        private readonly firestore: AngularFirestore,
+        private readonly storage: StorageService
+    ) {
+        this.checkConnectionStatus();
+    }
 
     list(options?: IListOptions) {
+        let valueChanges: Observable<T[]>;
+        const index = this.createIndex('list', options);
         let queryFn: QueryFn | undefined = undefined;
         if (options) {
             queryFn = this.queryFnFactory(options);
         }
-        return this.firestore.collection<T>(this.path, queryFn).valueChanges();
+        if (!this.connectionStatus) {
+            debugger;
+            valueChanges = this.storage.get(index) as Observable<T[]>;
+        } else {
+            valueChanges = this.firestore.collection<T>(this.path, queryFn).valueChanges().pipe(
+                mergeMap(list => {
+                    return this.storage.has(index).pipe(
+                        map(has => {
+                            if (!has) {
+                                debugger;
+                                this.storage.set(index, list);
+                            }
+                            return list;
+                        })
+                    )
+                })
+            );
+        }
+        return valueChanges.pipe(
+            filter(value => value !== undefined)
+        );
     }
 
     insert(data: T) {
@@ -50,6 +81,30 @@ export class Repository<T> {
             }
             return queryFn as Query<DocumentData>;
         }
+    }
+
+    checkConnectionStatus() {
+        merge<boolean>(
+          fromEvent(window, 'offline').pipe(map(() => false)),
+          fromEvent(window, 'online').pipe(map(() => true)),
+        ).subscribe(connectionStatus => {
+            console.log('connectionStatus', connectionStatus);
+            this.connectionStatus = connectionStatus;
+        });
+    }
+
+    private createIndex(method: string, options?: IListOptions) {
+        let opt = 'NULL';
+        if (options && options.where && options.where.value instanceof Date) {
+            let _opt: IListOptions = { ...options, where: { ...options.where } };
+            if (_opt && _opt.where) {
+                _opt.where.value = _opt.where.value.toDateString();
+                opt = JSON.stringify(_opt);
+            }
+        }
+        const index = `${method}:${this.path}:${opt}`;
+        console.log(options, index);
+        return index;
     }
 
 }
