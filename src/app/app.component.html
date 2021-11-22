@@ -1,4 +1,4 @@
-<!-- <app-splash-screen></app-splash-screen> -->
+<splash-screen *ngIf="showSplashScreen"></splash-screen>
 <p id="version">{{ version }}</p>
 
 <div [@routeAnimations]="prepareRoute(outlet)">

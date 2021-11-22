@@ -9,7 +9,6 @@ import { registerLocaleData } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N, pt_BR } from 'ng-zorro-antd/i18n';
-import { SplashScreenComponent } from './splash-screen.component';
 import { UpdateService } from './services/update.service';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
@@ -19,6 +18,7 @@ import { AngularFireMessagingModule, SERVICE_WORKER, VAPID_KEY } from '@angular/
 import { MessagingService } from './services/messaging.service';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AuthService } from './services/auth.service';
+import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 
 registerLocaleData(ptBr);
 

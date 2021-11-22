@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { slideInAnimation } from './animations';
 import { AuthService } from './services/auth.service';
@@ -17,6 +16,8 @@ import { UpdateService } from './services/update.service';
   ]
 })
 export class AppComponent {
+
+  showSplashScreen = true;
 
   version = environment.version;
   links = [
@@ -50,6 +51,7 @@ export class AppComponent {
     });
     this.appUpdateService.start();
     this.messagingService.request();
+    setTimeout(() => this.showSplashScreen = false, 4000);
   }
 
   prepareRoute(outlet: RouterOutlet) {

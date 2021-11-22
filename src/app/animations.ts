@@ -35,6 +35,39 @@ export const slideInAnimation =
       ]),
       query(':enter', animateChild()),
     ]),
+    transition('LoginPage => HomePage', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          overflow: 'hidden ',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        })
+      ]),
+      query(':leave', [
+        style({
+          zIndex: 1,
+          width: '100%',
+          left: '0%'
+        })
+      ]),
+      query(':enter', [
+        style({
+          boxShadow: '-6px 6px 10px rgba(0, 0, 0, 0.25)',
+          zIndex: 200,
+          width: '0%',
+          left: '100%'
+        })
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':enter', [
+          animate('300ms ease-out', style({ left: '0%', width: '100%' }))
+        ])
+      ]),
+      query(':enter', animateChild()),
+    ]),
     transition('MonthPage => HomePage', [
         style({ position: 'relative' }),
         query(':enter, :leave', [
