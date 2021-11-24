@@ -5,6 +5,11 @@ import { AuthService } from './services/auth.service';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
+    path: 'login',
+    data: { animation: 'LoginPage' },
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+  },
+  {
     path: 'home',
     data: { animation: 'HomePage' },
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
@@ -17,9 +22,10 @@ const routes: Routes = [
     canActivate: [AuthService]
   },
   {
-    path: 'login',
-    data: { animation: 'LoginPage' },
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    path: 'dashboard',
+    data: { animation: 'DashboardPage' },
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthService]
   }
 ];
 
