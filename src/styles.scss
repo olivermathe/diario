@@ -183,3 +183,8 @@ p, span, div, h1, h2, input {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.ant-progress-bg {
+    max-height: 2px;
+}

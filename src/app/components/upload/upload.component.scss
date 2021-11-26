@@ -1,0 +1,94 @@
+
+#container {
+    border-radius: 8px;
+    width: 452px;
+    display: flex;
+    flex-flow: column;
+    padding: 15px;
+    box-shadow: 1px 1px 12px #a3a3a3;
+    
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    #container-title {
+        font-weight: bold;
+        display: flex;
+        flex-flow: row;
+        font-size: 20px;
+
+        #title {
+            flex: 1
+        }
+
+        mat-icon {
+            cursor: pointer;
+        }
+    }
+
+
+    .file-loader-list {
+        padding-right: 20px;
+        max-height: 181px;
+        overflow-y: scroll;
+        
+        .file-loader-box {
+            
+            .name-container {
+                
+                mat-icon:first-child {
+                    margin-right: 8px;
+                }
+
+                mat-icon:last-child {
+                    cursor: pointer;
+                }
+
+                padding: 8px;
+                font-size: 16px;
+                align-items: center;
+                display: flex;
+                flex-flow: row;
+                
+                .file-name {
+                    flex: 1;
+                    margin: unset;
+                }
+            }
+        }
+
+        .error {
+            mat-icon {
+                color: red;
+            }
+        }
+
+        .success {
+            mat-icon:first-child {
+                color: green;
+            }
+        }
+        
+    }
+}
+
+
+.file-loader-list::-webkit-scrollbar {
+    width: 1px;
+    margin-right: 10px;
+}
+
+.file-loader-list::-webkit-scrollbar-track {
+    background: rgb(221, 221, 221);
+    border-radius: 12px;
+}
+
+.file-loader-list::-webkit-scrollbar-thumb {
+    background: rgb(82, 65, 66);
+    border-radius: 12px;
+}
+
+.file-loader-list::-webkit-scrollbar-thumb:hover {
+    background: rgb(82, 65, 66);
+    border-radius: 12px;
+}

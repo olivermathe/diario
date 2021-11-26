@@ -1,0 +1,23 @@
+<div id="container" *ngIf="files.length">
+
+    <div id="container-title">
+        <p id="title">Upload de arquivo</p>
+        <mat-icon id="container-close" (click)="close()">close</mat-icon>
+    </div>
+
+    <div class="file-loader-list">
+
+        <div class="file-loader-box" *ngFor="let file$ of files">
+            <div class="name-container">
+                <mat-icon *ngIf="(file$ | async)?.status === 'P'">attach_file</mat-icon>
+                <mat-icon *ngIf="(file$ | async)?.status === 'S'">check_circle_outline</mat-icon>
+                <mat-icon *ngIf="(file$ | async)?.status === 'E'">highlight_off</mat-icon>
+                <p class="file-name">{{ (file$ | async)?.name }}</p>
+                <mat-icon *ngIf="(file$ | async)?.status !== 'P'">visibility</mat-icon>
+            </div>
+            <nz-progress [nzPercent]="(file$ | async)?.progress" [nzShowInfo]="false"></nz-progress>
+        </div>
+
+    </div>
+
+</div>
