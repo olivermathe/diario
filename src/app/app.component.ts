@@ -30,6 +30,11 @@ export class AppComponent {
       label: 'extrato',
       icon: 'format_list_bulleted',
       path: 'extrato'
+    },
+    {
+      label: 'dashboard',
+      icon: 'format_list_bulleted',
+      path: 'dashboard'
     }
   ];
   activeLink = 'home';
